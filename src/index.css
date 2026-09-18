@@ -1,0 +1,4 @@
+* { box-sizing: border-box; }
+html, body, #root { margin: 0; padding: 0; background: #0b0b0e; }
+button:disabled { opacity: .45; cursor: not-allowed; }
+input[type="range"] { accent-color: #7c3aed; }

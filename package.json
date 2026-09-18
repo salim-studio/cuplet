@@ -1,0 +1,24 @@
+{
+  "name": "cuplet",
+  "version": "1.0.0",
+  "description": "Cuplet — fast, lightweight React video editor SDK (timeline + canvas + AI captions + MP4/WebM export). Faster alternative to twick.",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "server": "node server/render-server.js"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "typescript": "^5.4.5",
+    "vite": "^5.4.0"
+  }
+}
