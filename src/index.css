@@ -1,4 +1,7 @@
 * { box-sizing: border-box; }
 html, body, #root { margin: 0; padding: 0; background: #0b0b0e; }
+body { font-family: Inter, system-ui, "Segoe UI", sans-serif; color: #fafafa; }
+button { font-family: inherit; }
 button:disabled { opacity: .45; cursor: not-allowed; }
 input[type="range"] { accent-color: #7c3aed; }
+::selection { background: #7c3aed; color: #fff; }

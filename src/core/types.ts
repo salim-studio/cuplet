@@ -62,9 +62,9 @@ export interface CaptionCue {
 export const DEFAULT_PROJECT: Project = {
   properties: { width: 720, height: 1280, fps: 30, background: '#000000', duration: 10 },
   tracks: [
-    { id: 'v1', type: 'video', name: 'فيديو 1' },
-    { id: 't1', type: 'text', name: 'نصوص' },
-    { id: 'c1', type: 'caption', name: 'ترجمة' },
+    { id: 'v1', type: 'video', name: 'Video' },
+    { id: 't1', type: 'text', name: 'Text' },
+    { id: 'c1', type: 'caption', name: 'Captions' },
   ],
   clips: [
     {
@@ -73,7 +73,7 @@ export const DEFAULT_PROJECT: Project = {
       type: 'text',
       s: 0,
       e: 4,
-      props: { text: 'مرحباً بك في Cuplet ⚡', fontSize: 56, fill: '#ffffff', x: 0.5, y: 0.42 },
+      props: { text: 'Welcome to Cuplet', fontSize: 56, fill: '#ffffff', x: 0.5, y: 0.42 },
     },
   ],
 };

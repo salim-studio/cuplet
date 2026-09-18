@@ -69,10 +69,10 @@ export async function transcribeWithWhisper(audioBlob: Blob, endpoint: string, a
 }
 
 /** Live transcribe via browser Web Speech API (no server, free, fast) */
-export function liveTranscribe(onResult: (text: string, isFinal: boolean) => void, lang = 'ar-SA'): () => void {
+export function liveTranscribe(onResult: (text: string, isFinal: boolean) => void, lang = 'en-US'): () => void {
   const SR: unknown = (window as unknown as { SpeechRecognition?: unknown; webkitSpeechRecognition?: unknown }).SpeechRecognition
     ?? (window as unknown as { webkitSpeechRecognition?: unknown }).webkitSpeechRecognition;
-  if (!SR) throw new Error('المتصفح لا يدعم التعرف الصوتي المباشر');
+  if (!SR) throw new Error('This browser does not support live speech recognition');
   const Rec = SR as new () => {
     lang: string; interimResults: boolean; continuous: boolean;
     onresult: ((e: { results: ArrayLike<ArrayLike<{ transcript: string }>> }) => void) | null;

@@ -1,9 +1,10 @@
 {
   "name": "cuplet",
   "version": "1.0.0",
-  "description": "Cuplet — fast, lightweight React video editor SDK (timeline + canvas + AI captions + MP4/WebM export). Faster alternative to twick.",
+  "description": "Cuplet — fast, lightweight browser video studio (timeline + canvas + AI captions + export).",
   "type": "module",
   "license": "MIT",
+  "author": "salim-slimani",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",

@@ -29,11 +29,11 @@ export default function Timeline() {
               {project.clips.filter((c) => c.trackId === t.id).map((c) => (
                 <div
                   key={c.id}
-                  title={`${c.type} ${fmtTime(c.s)} → ${fmtTime(c.e)} (اسحب للنقل)`}
+                  title={`${c.type} ${fmtTime(c.s)} → ${fmtTime(c.e)} (drag to move)`}
                   onClick={(e) => { e.stopPropagation(); select(c.id); }}
                   onDoubleClick={(e) => {
                     e.stopPropagation();
-                    const v = prompt('نص المقطع:', c.props.text ?? '');
+                    const v = prompt('Clip text:', c.props.text ?? '');
                     if (v !== null) setProject((p) => ({ ...p, clips: p.clips.map((x) => x.id === c.id ? { ...x, props: { ...x.props, text: v } } : x) }));
                   }}
                   draggable
@@ -76,7 +76,7 @@ export default function Timeline() {
 function ClipTools() {
   const { project, selectedId, setProject } = useCuplet();
   const c = project.clips.find((x) => x.id === selectedId);
-  if (!c) return <div style={s.hint}>اختر مقطعاً: اسحب لنقله بين المسارات • دبل كلك لتحرير النص</div>;
+  if (!c) return <div style={s.hint}>Select a clip: drag to move across tracks • double-click to edit text</div>;
   return (
     <div style={s.tools}>
       <button style={s.btn} onClick={() => setProject((p) => {
@@ -84,10 +84,10 @@ function ClipTools() {
         return { ...p, clips: p.clips.flatMap((x) => x.id === c.id
           ? [{ ...x, e: at }, { ...x, id: x.id + '-b', s: at }]
           : [x]) };
-      })}>✂ تقسيم</button>
-      <button style={s.btn} onClick={() => setProject((p) => ({ ...p, clips: p.clips.filter((x) => x.id !== c.id) }))}>🗑 حذف</button>
-      <button style={s.btn} onClick={() => setProject((p) => ({ ...p, clips: p.clips.map((x) => x.id === c.id ? { ...x, e: x.e + 1 } : x) }))}>+1s تمديد</button>
-      <button style={s.btn} onClick={() => setProject((p) => ({ ...p, clips: p.clips.map((x) => x.id === c.id ? { ...x, s: Math.max(0, x.s - 0.5), e: x.e - 0.5 } : x) }))}>◀ تقديم</button>
+      })}>✂ Split</button>
+      <button style={s.btn} onClick={() => setProject((p) => ({ ...p, clips: p.clips.filter((x) => x.id !== c.id) }))}>🗑 Delete</button>
+      <button style={s.btn} onClick={() => setProject((p) => ({ ...p, clips: p.clips.map((x) => x.id === c.id ? { ...x, e: x.e + 1 } : x) }))}>+1s Extend</button>
+      <button style={s.btn} onClick={() => setProject((p) => ({ ...p, clips: p.clips.map((x) => x.id === c.id ? { ...x, s: Math.max(0, x.s - 0.5), e: x.e - 0.5 } : x) }))}>◀ Nudge</button>
     </div>
   );
 }

@@ -27,7 +27,7 @@ export function CupletStudio({ initial }: { initial?: Project }) {
 }
 
 const s: Record<string, React.CSSProperties> = {
-  page: { display: 'flex', flexDirection: 'column', gap: 12, padding: 12, maxWidth: 1200, margin: '0 auto', fontFamily: 'system-ui, Tajawal, Segoe UI, sans-serif' },
+  page: { display: 'flex', flexDirection: 'column', gap: 12, padding: 12, maxWidth: 1200, margin: '0 auto', fontFamily: 'Inter, system-ui, "Segoe UI", sans-serif' },
   main: { display: 'flex', gap: 12, flexWrap: 'wrap' },
   side: { flex: '1 1 320px', display: 'flex', flexDirection: 'column', gap: 12, minWidth: 280 },
   center: { flex: '0 1 340px', display: 'flex', justifyContent: 'center' },

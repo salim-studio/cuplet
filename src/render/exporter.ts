@@ -46,7 +46,7 @@ export async function exportRealtime(
   const t0 = performance.now();
   for (let t = 0; t < dur; t += step) {
     await renderFrame(ctx, project, t);
-    onProgress({ done: t, total: dur, label: 'تصدير سريع...' });
+    onProgress({ done: t, total: dur, label: 'Exporting…' });
     // yield to keep UI alive; ~0ms keeps it faster than realtime while canvas stream timestamps stay valid
     await new Promise((r) => setTimeout(r, 0));
     void t0;

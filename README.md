@@ -1,58 +1,65 @@
-# ⚡ Cuplet — محرر فيديو React خفيف وسريع (بديل twick)
+# ⚡ Cuplet — Fast Browser Video Studio
 
-برنامج عملي متكامل: **Timeline + معاينة Canvas + ترجمة AI + تصدير فيديو** — في حزمة واحدة بدون تعقيد twick.
+A complete, practical video studio in a single package: **timeline editing + canvas preview + AI captions + one-click export**. No installs, no heavy dependencies — runs entirely in the browser.
 
-## لماذا Cuplet أسرع من twick؟
+© 2026 salim-slimani. Licensed under the MIT License (see `LICENSE`).
 
-| twick | cuplet |
-|---|---|
-| مونوريبو ضخم (turbo + pnpm + عشرات الحزم) | حزمة واحدة Vite + React |
-| fabric.js ثقيل للكانفس | Canvas2D مباشر + cache للوسائط |
-| ffmpeg.wasm (~30MB تحميل) إجباري | تصدير MediaRecorder فوري، بدون تحميل wasm |
-| تصدير المتصفح Chromium فقط (WebCodecs) | يعمل في **كل المتصفحات** (VP9/VP8/H264 تلقائي) |
-| فلاتر WebGL مخصصة | فلاتر CSS مُسرّعة بالـGPU |
-| ترجمة تتطلب Google Vertex | إملاء مجاني Web Speech + SRT/VTT + Whisper اختياري |
+## Highlights
 
-## التشغيل
+- 🚀 **Zero heavy deps** — single Vite + React package, instant dev startup
+- 🎞 **Canvas2D compositor** with media caching and GPU-accelerated CSS-filter effects
+- 🌍 **Universal export** via MediaRecorder (VP9 / VP8 / H264 auto-pick) — works in every modern browser, no multi-MB wasm download
+- 🎬 **Timeline** — drag & drop across tracks, split ✂, extend, nudge, delete, 50-step undo/redo
+- 💬 **Captions & AI** — auto-timing from plain text, SRT/VTT import/export, free live dictation (Web Speech), optional Whisper-compatible endpoint
+- 🖥 Optional Node render server (`server/render-server.js`) with zero third-party dependencies
+
+## Getting started
 
 ```bash
 cd cuplet
 npm install
 npm run dev      # → http://localhost:5199
-npm run build    # بناء الإنتاج
-npm run server   # سيرفر التصدير الاختياري (port 3099)
+npm run build    # production build (dist/)
+npm run server   # optional export server on :3099
 ```
 
-## المزايا
+## Features
 
-- 🎬 **Timeline**: سحب وإفلات بين المسارات، تقسيم ✂، تمديد، حذف، تراجع/إعادة (50 خطوة)
-- 👁 **معاينة حية**: Canvas2D + rAF + مزامنة صوت، دبل كلك لتحرير النص
-- 💬 **ترجمة AI**: توليد تلقائي من نص، استيراد/تصدير SRT/VTT، إملاء مباشر، Whisper endpoint
-- ✨ **فلاتر GPU**: سينمائي، دافئ، بارد، فينتاج، زاهي...
-- ⬇ **تصدير سريع**: WebM/MP4 حسب دعم المتصفح، حفظ/فتح مشروع JSON، مقاسات 9:16 / 16:9 / 1:1
-- 🖥 **سيرفر اختياري**: `server/render-server.js` (Node بدون puppeteer)
+- **Media panel** — upload video/image/audio, paste remote URLs, one-click samples, per-clip GPU effect picker
+- **Live preview** — rAF playback loop with audio sync; double-click any text clip to edit it inline
+- **Caption studio** — Classic / Karaoke / Minimal / Pop styles, auto-generate from narration, SRT round-trip
+- **Export** — one click, progress readout, automatic `webm`/`mp4` extension; project save/open as JSON
+- **Formats** — Vertical 9:16, Landscape 16:9, Square 1:1
 
-## الاستخدام كـ SDK
+## Use it as an SDK
 
 ```tsx
 import { CupletStudio } from './src/components/Studio';
-<CupletStudio />
+
+export default function App() {
+  return <CupletStudio />;
+}
 ```
 
-انظر `examples/basic-usage.tsx`.
+See `examples/basic-usage.tsx` for a preloaded-project example.
 
-## هيكل المجلد
+## Project layout
 
 ```
-src/core/      types, timeline (move/trim/split), store (undo/redo)
-src/captions/  engine (SRT/VTT/Whisper/WebSpeech)
-src/render/    compositor (Canvas2D cache) + exporter (MediaRecorder)
-src/effects/   filters (CSS GPU)
+src/core/      types, timeline ops (move/trim/split), store with undo/redo
+src/captions/  caption engine (SRT/VTT, auto-timing, Whisper, live dictation)
+src/render/    Canvas2D compositor + MediaRecorder exporter
+src/effects/   GPU effect presets (CSS filter strings)
 src/components/ Toolbar, Preview, Timeline, MediaPanel, CaptionPanel, Studio
-server/        render-server.js
+server/        optional dependency-free Node render server
+examples/      SDK usage examples
 ```
 
-## الخطوات التالية المقترحة
+## Roadmap ideas
 
-- تثبيت `mp4-muxer` لتصدير MP4 دون اتصال، أو ربط السيرفر بـ ffmpeg حقيقي.
-- إضافة مفاتيح Pexels/Unsplash في MediaPanel للأصول العامة (مثل twick).
+- Optional `mp4-muxer` dependency for offline MP4 muxing
+- Public stock providers (Pexels / Unsplash) in the media panel
+- Real ffmpeg wiring in `server/render-server.js` for server-side MP4
+
+---
+© 2026 salim-slimani — Cuplet. All rights reserved under the MIT License.

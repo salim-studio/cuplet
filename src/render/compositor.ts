@@ -8,20 +8,22 @@ export function getMedia(src: string, kind: 'video' | 'image'): Promise<HTMLVide
   const hit = mediaCache.get(src);
   if (hit) return Promise.resolve(hit);
   return new Promise((resolve, reject) => {
+    // blob:/data: URLs must NOT carry crossOrigin (breaks load); only remote http(s) needs it
+    const remote = /^https?:\/\//i.test(src);
     if (kind === 'image') {
       const img = new Image();
-      img.crossOrigin = 'anonymous';
+      if (remote) img.crossOrigin = 'anonymous';
       img.onload = () => { mediaCache.set(src, img); resolve(img); };
       img.onerror = reject;
       img.src = src;
     } else {
       const v = document.createElement('video');
-      v.crossOrigin = 'anonymous';
+      if (remote) v.crossOrigin = 'anonymous';
       v.muted = true;
       (v as HTMLVideoElement & { playsInline: boolean }).playsInline = true;
       v.preload = 'auto';
       v.onloadeddata = () => { mediaCache.set(src, v); resolve(v); };
-      v.onerror = () => reject(new Error('تعذر تحميل الفيديو'));
+      v.onerror = () => reject(new Error('Could not load the video'));
       v.src = src;
     }
   });
@@ -97,7 +99,7 @@ function drawText(ctx: CanvasRenderingContext2D, c: Clip, W: number, H: number) 
   const y = (p.y ?? 0.85) * H;
   ctx.save();
   ctx.globalAlpha = p.opacity ?? 1;
-  ctx.font = `800 ${fs}px ${p.fontFamily ?? 'system-ui, Tajawal, sans-serif'}`;
+  ctx.font = `800 ${fs}px ${p.fontFamily ?? 'Inter, system-ui, sans-serif'}`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   if (c.type === 'caption') {
