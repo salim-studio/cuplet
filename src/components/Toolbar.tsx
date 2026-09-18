@@ -32,7 +32,10 @@ export default function Toolbar() {
 
   return (
     <div style={s.wrap}>
-      <strong style={s.logo}>⚡ Cuplet</strong>
+      <div style={s.brand}>
+        <img src="/logo.svg" alt="Cuplet logo" width={32} height={32} style={{ borderRadius: 8 }} />
+        <strong style={s.logo}>Cuplet</strong>
+      </div>
       <span style={s.sub}>Fast browser video studio · no installs · works everywhere</span>
       <div style={s.row}>
         <button style={s.btn} disabled={!canUndo} onClick={undo}>↩ Undo</button>
@@ -77,6 +80,7 @@ const HIDDEN: React.CSSProperties = { position: 'absolute', width: 1, height: 1,
 
 const s: Record<string, React.CSSProperties> = {
   wrap: { background: '#141419', borderRadius: 12, padding: 12, color: '#fff', display: 'flex', flexDirection: 'column', gap: 8 },
+  brand: { display: 'flex', alignItems: 'center', gap: 10 },
   logo: { fontSize: 24, fontWeight: 800, letterSpacing: 0.5, background: 'linear-gradient(90deg,#c4b5fd,#7c3aed 55%,#facc15)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' },
   sub: { fontSize: 12, color: '#a1a1aa' },
   row: { display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' },

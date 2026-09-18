@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Cuplet logo">
+  <defs>
+    <linearGradient id="cuplet-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8b5cf6"/>
+      <stop offset=".55" stop-color="#7c3aed"/>
+      <stop offset="1" stop-color="#4c1d95"/>
+    </linearGradient>
+    <linearGradient id="cuplet-bolt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fde68a"/>
+      <stop offset="1" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="120" fill="url(#cuplet-bg)"/>
+  <path d="M292 64 128 292h104l-16 156 168-224H280z" fill="url(#cuplet-bolt)" stroke="#78350a" stroke-opacity=".3" stroke-width="10" stroke-linejoin="round"/>
+</svg>

@@ -1,6 +1,12 @@
-# ⚡ Cuplet — Fast Browser Video Studio
+<p align="center">
+  <img src="./public/logo.svg" alt="Cuplet logo" width="128" />
+</p>
 
-A complete, practical video studio in a single package: **timeline editing + canvas preview + AI captions + one-click export**. No installs, no heavy dependencies — runs entirely in the browser.
+<h1 align="center">Cuplet — Fast Browser Video Studio</h1>
+
+<p align="center"><strong>Timeline editing + canvas preview + AI captions + one-click export.</strong><br />No installs, no heavy dependencies — runs entirely in the browser.</p>
+
+![Cuplet cover](./public/cover.svg)
 
 © 2026 salim-slimani. Licensed under the MIT License (see `LICENSE`).
 
